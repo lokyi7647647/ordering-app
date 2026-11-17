@@ -1,0 +1,37 @@
+#receipt-title {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.receipt-item-desc-container {
+  gap: 10px;
+}
+
+.receipt-item-container {
+  margin-left: 4px;
+  justify-content: space-between;
+  align-items: start;
+  margin: 0 0 16px 0;
+}
+
+.remove-btn {
+  color: #bbbbbb;
+  border: none;
+  font-family: Verdana, sans-serif;
+  padding-left: 3px;
+  font-size: 12px;
+}
+
+.price-pos-offset {
+  top: -6px;
+}
+
+.receipt-list {
+  padding: 28px 4px 0 4px;
+}
+
+.border-bottom-black {
+  padding-bottom: 5px;
+  border-bottom: 2px solid #393333;
+  margin-bottom: 20px;
+}

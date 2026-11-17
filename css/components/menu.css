@@ -1,9 +1,12 @@
 .item-container {
   height: 135px;
-
   align-items: start;
   box-sizing: border-box;
   margin-bottom: 50px;
+}
+
+#menu > :last-child {
+  margin-bottom: 46px;
 }
 
 .item-container::after {
@@ -30,7 +33,6 @@
 .add-btn {
   font-family: "Inter", sans-serif;
   margin-left: auto;
-  background-color: inherit;
   border: 1px solid #dedede;
   border-radius: 50%;
   width: 50px;
