@@ -1,0 +1,46 @@
+.item-container {
+  height: 135px;
+
+  align-items: start;
+  box-sizing: border-box;
+  margin-bottom: 50px;
+}
+
+.item-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  right: 0;
+  border-bottom: 1px solid #d2d2d2;
+}
+
+.item-inner-container {
+  display: flex;
+  align-items: start;
+  gap: 26px;
+}
+
+.item-inner-desc-container {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.add-btn {
+  font-family: "Inter", sans-serif;
+  margin-left: auto;
+  background-color: inherit;
+  border: 1px solid #dedede;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 32px;
+  font-weight: 200;
+  margin-top: 3px;
+}
+
+.add-btn > span {
+  bottom: 2px;
+  left: 1px;
+}
