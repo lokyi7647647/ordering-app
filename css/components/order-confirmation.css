@@ -1,0 +1,9 @@
+.order-confirmation {
+  color: #065f46;
+  font-size: 32px;
+  background-color: #ecfdf5;
+  height: 120px;
+  text-align: center;
+  align-content: center;
+  clip-path: inset(0 0 0 8px round 3px);
+}

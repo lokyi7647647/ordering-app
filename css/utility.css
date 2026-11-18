@@ -17,3 +17,15 @@
 .position-relative {
   position: relative;
 }
+
+.display-none {
+  display: none;
+}
+
+.font-inter {
+  font-family: "Inter", sans-serif;
+}
+
+.font-verdana {
+  font-family: "Verdana", sans-serif;
+}

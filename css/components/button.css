@@ -1,0 +1,22 @@
+.green-btn {
+  background-color: #16db99;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  width: 100%;
+  font-weight: bold;
+}
+
+#complete-order-btn {
+  font-size: 16px;
+  height: 60px;
+  font-weight: bold;
+  padding: 0 0 0 20px;
+}
+
+#pay-btn {
+  height: 71.3px;
+  box-sizing: border-box;
+  margin-top: 24px;
+  padding: 0 12px 7px 0;
+}

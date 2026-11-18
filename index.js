@@ -1,43 +1,118 @@
 import { menuArray, orderMap } from "./data.js";
 
-const menu = document.getElementById("menu");
 document.addEventListener("click", elementFinder);
+document.addEventListener("submit", handlePayBtn);
 
 function elementFinder(event) {
-  let el = "";
-  if ((el = event.target.closest(".add-btn"))) {
-    handleAddBtn(el);
+  const el = event.target;
+  if (el.closest(".add-btn")) {
+    handleAddBtn(el.closest(".add-btn"));
+  } else if (el.classList.contains("remove-btn")) {
+    handleRemoveBtn(el);
+  } else if (el.id === "complete-order-btn") {
+    handleCompleteBn();
   }
+
+  // else if (el.id === "pay-btn") {
+  //   // const dialog = document.getElementById("card-dialog");
+  //   // dialog.close();
+  // }
 }
 
 function handleAddBtn(addBtn) {
   const item = menuArray.filter((e) => e.id === Number(addBtn.dataset.item))[0];
-  let totalPrice = orderMap.get(item.name);
+  let itemSummary = orderMap.get(item.name);
 
-  if (totalPrice) {
-    totalPrice += item.price;
+  if (itemSummary) {
+    itemSummary.totalPrice += item.price;
+    itemSummary.quantity++;
   } else {
-    totalPrice = item.price;
+    itemSummary = {
+      totalPrice: item.price,
+      quantity: 1,
+    };
   }
 
-  orderMap.set(item.name, totalPrice);
-  // console.log(orderMap);
+  orderMap.set(item.name, itemSummary);
 
-  renderCart();
+  renderReceipt(orderMap);
 }
 
-function renderCart(orderMap) {
-  // let ordersHtml = ''
-  // orderMap.forEach((order) => {
-  //   ordersHtml += `
-  //   `
-  // })
-  // `
-  // <h2>Your order</h2>
-  //   <dl>
-  //     ${ordersHtml}
-  //   </dl>
-  // `;
+function renderReceipt(orderMap) {
+  const receiptList = document.getElementById("receipt-list");
+  let receiptContentHtml = "";
+  let totalpay = 0;
+  orderMap.forEach((itemSummary, itemName) => {
+    totalpay += itemSummary.totalPrice;
+    receiptContentHtml += `
+      <li class="display-flex receipt-item-container">
+        <div class="display-flex receipt-item-desc-container">
+          <h3 class="font-weight-regular">${itemName}</h3>
+            <div class="units font-inter">
+              <span class="units-label">Unit: </span
+              ><span class="units-value">${itemSummary.quantity}</span>
+            </div>
+          <button class="remove-btn font-verdana" data-item="${itemName}">remove</button>
+        </div>
+        <p class="font-size-20px price">$${itemSummary.totalPrice}</p>
+      </li> `;
+  });
+
+  receiptContentHtml += `
+    <div class="border-bottom-black"></div>
+    <li class="display-flex receipt-item-container">
+      <h3 class="display-flex receipt-item-desc-container font-weight-regular">Total price:</h3>
+      <p class="font-size-20px">
+        $${totalpay}
+      </p>
+    </li> `;
+
+  receiptList.innerHTML = receiptContentHtml;
+
+  const receipt = document.getElementById("checkout-section");
+  if (receipt.classList.contains("display-none") || !orderMap.size) {
+    receipt.classList.toggle("display-none");
+  }
+
+  const orderConfirm = document.querySelector(".order-confirmation");
+  orderConfirm.classList.contains("display-none") ||
+    orderConfirm.classList.toggle("display-none");
+}
+
+function handleRemoveBtn(removeBtn) {
+  console.log(removeBtn);
+  orderMap.forEach((itemSummary, itemName, map) => {
+    if (itemName === removeBtn.dataset.item) {
+      itemSummary.totalPrice -= itemSummary.totalPrice / itemSummary.quantity;
+      itemSummary.quantity--;
+      if (itemSummary.quantity == 0) {
+        map.delete(itemName);
+      }
+    }
+  });
+
+  renderReceipt(orderMap);
+}
+
+function handleCompleteBn() {
+  const dialog = document.getElementById("card-dialog");
+  dialog.showModal();
+}
+
+function handlePayBtn(event) {
+  const el = event.target;
+  if (el.id === "card-dialog-form") {
+    event.preventDefault();
+    document.getElementById("card-dialog").close();
+    document
+      .getElementById("checkout-section")
+      .classList.toggle("display-none");
+    const formObj = Object.fromEntries(new FormData(el));
+    console.log(formObj);
+    const orderConfirm = document.querySelector(".order-confirmation");
+    orderConfirm.textContent = `Thanks, ${formObj.name}! Your order is on its way!`;
+    orderConfirm.classList.toggle("display-none");
+  }
 }
 
 function renderMenu(menuArray) {
@@ -61,16 +136,15 @@ function renderMenu(menuArray) {
                         <p class="font-size-20px">$${item.price}</p>
                     </div>
                 </div>
-                <button class="add-btn" data-item=${item.id}>
+                <button class="add-btn font-inter" data-item=${item.id}>
                     <span class="position-relative">+</span>
                 </button>
             </li> `;
     })
     .join("");
 
+  const menu = document.getElementById("menu");
   menu.innerHTML = menuHtml;
 }
 
 renderMenu(menuArray);
-
-// <span class="position-relative">+</span>

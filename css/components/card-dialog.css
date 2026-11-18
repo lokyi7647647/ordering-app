@@ -1,0 +1,35 @@
+#card-dialog {
+  width: 524px;
+  height: 542.24px;
+  box-sizing: border-box;
+  border: none;
+  padding: 0 24.87px 0 23.22px;
+  margin-top: 292px;
+  border-radius: 3.89px;
+  box-shadow: 10px 14px 300px 2px rgb(0 0 0 / 52%);
+}
+
+#card-dialog-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#card-dialog-desc {
+  font-size: 24px;
+  margin: 50px auto 60px 85px;
+}
+
+#card-dialog-form > input {
+  width: 475.91px;
+  height: 71.3px;
+  border-radius: 3.89px;
+  border: 1.3px solid #757575;
+  box-sizing: border-box;
+  font-size: 20px;
+  padding: 0 0 5px 26px;
+  margin-bottom: 23px;
+}
+
+#card-dialog::backdrop {
+  background-color: transparent;
+}

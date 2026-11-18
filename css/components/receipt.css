@@ -5,10 +5,10 @@
 
 .receipt-item-desc-container {
   gap: 10px;
+  align-items: center;
 }
 
 .receipt-item-container {
-  margin-left: 4px;
   justify-content: space-between;
   align-items: start;
   margin: 0 0 16px 0;
@@ -17,21 +17,39 @@
 .remove-btn {
   color: #bbbbbb;
   border: none;
-  font-family: Verdana, sans-serif;
   padding-left: 3px;
   font-size: 12px;
 }
 
-.price-pos-offset {
-  top: -6px;
-}
-
-.receipt-list {
-  padding: 28px 4px 0 4px;
+#receipt-list {
+  padding: 28px 4px 37px 4px;
 }
 
 .border-bottom-black {
   padding-bottom: 5px;
   border-bottom: 2px solid #393333;
   margin-bottom: 20px;
+}
+
+.units {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background-color: #e1ebff;
+  color: #1e293b;
+  font-size: 14px;
+  font-family: "Inter";
+}
+
+.units-label {
+  font-weight: 400;
+}
+
+.units-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #172554;
+}
+
+.price {
+  align-self: center;
 }

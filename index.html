@@ -13,6 +13,9 @@
       <link rel="stylesheet" href="css/utility.css" />
       <link rel="stylesheet" href="css/components/menu.css" />
       <link rel="stylesheet" href="css/components/receipt.css" />
+      <link rel="stylesheet" href="css/components/button.css" />
+      <link rel="stylesheet" href="css/components/card-dialog.css" />
+      <link rel="stylesheet" href="css/components/order-confirmation.css" />
       <script src="index.js" type="module"></script>
     </head>
     <body>
@@ -24,46 +27,61 @@
       </header>
       <main>
         <ul id="menu"></ul>
-        <article id="receipt">
+        <article id="checkout-section" class="display-none">
           <h2 id="receipt-title" class="font-weight-regular">Your order</h2>
-          <ul class="receipt-list">
-            <li class="display-flex receipt-item-container">
-              <div class="display-flex receipt-item-desc-container">
-                <h3 class="font-weight-regular">Pizza</h3>
-                <button class="remove-btn">remove</button>
-              </div>
-              <p class="font-size-20px">$14</p>
-            </li>
-            <li class="display-flex receipt-item-container">
-              <div class="display-flex receipt-item-desc-container">
-                <h3 class="font-weight-regular">Beer</h3>
-                <button class="remove-btn">remove</button>
-              </div>
-              <p class="font-size-20px position-relative price-pos-offset">
-                $12
-              </p>
-            </li>
-            <li class="display-flex receipt-item-container">
-              <div class="display-flex receipt-item-desc-container">
-                <h3 class="font-weight-regular">Beer</h3>
-                <button class="remove-btn">remove</button>
-              </div>
-              <p class="font-size-20px position-relative price-pos-offset">
-                $12
-              </p>
-            </li>
-            <div class="border-bottom-black"></div>
-            <li class="display-flex receipt-item-container">
-              <div class="display-flex receipt-item-desc-container">
-                <h3 class="font-weight-regular">Total price:</h3>
-              </div>
-              <p class="font-size-20px position-relative price-pos-offset">
-                $26
-              </p>
-            </li>
-          </ul>
+          <ul id="receipt-list"></ul>
+          <button id="complete-order-btn" class="font-verdana green-btn">
+            Complete order
+          </button>
         </article>
+        <p class="order-confirmation display-none"></p>
       </main>
+      <dialog
+        id="card-dialog"
+        aria-label="Card details"
+        aria-describedby="dialog-desc"
+      >
+        <form id="card-dialog-form" action="" class="font-verdana">
+          <h1 id="card-dialog-desc">Enter card details</h1>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            id="name"
+            name="name"
+            aria-label="Name"
+            class="font-verdana"
+            required
+          />
+          <input
+            type="text"
+            inputmode="numeric"
+            placeholder="Enter card number"
+            id="card-number"
+            name="card-number"
+            aria-label="Card number"
+            class="font-verdana"
+            required
+            pattern="^\d+$"
+            minlength="15"
+            maxlength="16"
+          />
+          <input
+            type="text"
+            inputmode="numeric"
+            placeholder="Enter CVV"
+            id="cvv"
+            name="cvv"
+            aria-label="Card cvv"
+            class="font-verdana"
+            required="^\d+$"
+            minlength="3"
+            maxlength="4"
+          />
+          <button id="pay-btn" class="green-btn font-size-20px font-verdana">
+            Pay
+          </button>
+        </form>
+      </dialog>
     </body>
   </html>
 </html>
