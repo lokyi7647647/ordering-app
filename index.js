@@ -2,6 +2,21 @@ import { menuArray, orderMap } from "./data.js";
 
 document.addEventListener("click", elementFinder);
 document.addEventListener("submit", handlePayBtn);
+document.addEventListener("keydown", handletab);
+
+const announcement = document.querySelector(".visually-hidden");
+
+function handletab(event) {
+  if (event.key === "Tab") {
+    if (event.target.id === "pay-btn" && !event.shiftKey) {
+      event.preventDefault();
+      document.querySelector("#card-dialog-form > #name").focus();
+    } else if (event.target.id === "name" && event.shiftKey) {
+      event.preventDefault();
+      document.querySelector("#card-dialog-form > #pay-btn").focus();
+    }
+  }
+}
 
 function elementFinder(event) {
   const el = event.target;
@@ -12,11 +27,6 @@ function elementFinder(event) {
   } else if (el.id === "complete-order-btn") {
     handleCompleteBn();
   }
-
-  // else if (el.id === "pay-btn") {
-  //   // const dialog = document.getElementById("card-dialog");
-  //   // dialog.close();
-  // }
 }
 
 function handleAddBtn(addBtn) {
@@ -35,10 +45,15 @@ function handleAddBtn(addBtn) {
 
   orderMap.set(item.name, itemSummary);
 
-  renderReceipt(orderMap);
+  renderReceipt(orderMap, item.name, "added");
 }
 
-function renderReceipt(orderMap) {
+function renderReceipt(
+  orderMap,
+  targetItem,
+  actionOnTargetItem,
+  isAnnounce = true,
+) {
   const receiptList = document.getElementById("receipt-list");
   let receiptContentHtml = "";
   let totalpay = 0;
@@ -68,19 +83,23 @@ function renderReceipt(orderMap) {
     </li> `;
 
   receiptList.innerHTML = receiptContentHtml;
-
+  if (isAnnounce) {
+    announcement.textContent = `${targetItem} ${actionOnTargetItem}, new payment is $${totalpay}`;
+  } else {
+    announcement.textContent = `${targetItem} ${actionOnTargetItem}, no payment due`;
+  }
   const receipt = document.getElementById("checkout-section");
   if (receipt.classList.contains("display-none") || !orderMap.size) {
     receipt.classList.toggle("display-none");
   }
 
-  const orderConfirm = document.querySelector(".order-confirmation");
-  orderConfirm.classList.contains("display-none") ||
-    orderConfirm.classList.toggle("display-none");
+  // const orderConfirm = document.querySelector(".order-confirmation");
+  // orderConfirm.classList.contains("visually-hidden") ||
+  //   orderConfirm.classList.toggle("visually-hidden");
 }
 
 function handleRemoveBtn(removeBtn) {
-  console.log(removeBtn);
+  document.querySelector("main").focus();
   orderMap.forEach((itemSummary, itemName, map) => {
     if (itemName === removeBtn.dataset.item) {
       itemSummary.totalPrice -= itemSummary.totalPrice / itemSummary.quantity;
@@ -88,30 +107,40 @@ function handleRemoveBtn(removeBtn) {
       if (itemSummary.quantity == 0) {
         map.delete(itemName);
       }
+      const isAnnounce = map.size ? true : false;
+      renderReceipt(map, itemName, "removed", isAnnounce);
     }
   });
-
-  renderReceipt(orderMap);
 }
 
 function handleCompleteBn() {
   const dialog = document.getElementById("card-dialog");
   dialog.showModal();
+  // document.getElementById("card-dialog-desc").focus()
 }
 
 function handlePayBtn(event) {
   const el = event.target;
   if (el.id === "card-dialog-form") {
     event.preventDefault();
+
+    // document
+    //   .getElementById("checkout-section")
+    //   .classList.toggle("visually-hidden");
+
     document.getElementById("card-dialog").close();
-    document
-      .getElementById("checkout-section")
-      .classList.toggle("display-none");
+
     const formObj = Object.fromEntries(new FormData(el));
     console.log(formObj);
     const orderConfirm = document.querySelector(".order-confirmation");
     orderConfirm.textContent = `Thanks, ${formObj.name}! Your order is on its way!`;
-    orderConfirm.classList.toggle("display-none");
+    orderConfirm.classList.toggle("visually-hidden");
+    orderConfirm.focus();
+    document
+      .getElementById("checkout-section")
+      .classList.toggle("display-none");
+
+    console.log(document.activeElement);
   }
 }
 
@@ -127,8 +156,8 @@ function renderMenu(menuArray) {
                 <div class="item-inner-container">
                     <img
                         class="item-image-size"
-                        src=${item.image}
-                        alt=${item.imageAlt}
+                        src="${item.image}"
+                        alt="${item.imageAlt}"
                     />
                     <div class="item-inner-desc-container">
                         <h2 class="font-weight-regular">${item.name}</h2>
@@ -136,7 +165,7 @@ function renderMenu(menuArray) {
                         <p class="font-size-20px">$${item.price}</p>
                     </div>
                 </div>
-                <button class="add-btn font-inter" data-item=${item.id}>
+                <button class="add-btn font-inter" data-item="${item.id}" aria-label="Add">
                     <span class="position-relative">+</span>
                 </button>
             </li> `;

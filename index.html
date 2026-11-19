@@ -16,6 +16,7 @@
       <link rel="stylesheet" href="css/components/button.css" />
       <link rel="stylesheet" href="css/components/card-dialog.css" />
       <link rel="stylesheet" href="css/components/order-confirmation.css" />
+      <link rel="stylesheet" href="css/components/live-region.css" />
       <script src="index.js" type="module"></script>
     </head>
     <body>
@@ -25,7 +26,7 @@
           The best burgers and pizzas in town.
         </p>
       </header>
-      <main>
+      <main tabindex="-1">
         <ul id="menu"></ul>
         <article id="checkout-section" class="display-none">
           <h2 id="receipt-title" class="font-weight-regular">Your order</h2>
@@ -34,15 +35,17 @@
             Complete order
           </button>
         </article>
-        <p class="order-confirmation display-none"></p>
+        <div class="visually-hidden" aria-live="polite"></div>
+        <p
+          class="order-confirmation visually-hidden"
+          role="alert"
+          aria-atomic="true"
+          tabindex="-1"
+        ></p>
       </main>
-      <dialog
-        id="card-dialog"
-        aria-label="Card details"
-        aria-describedby="dialog-desc"
-      >
+      <dialog id="card-dialog" aria-labelledby="card-dialog-title">
         <form id="card-dialog-form" action="" class="font-verdana">
-          <h1 id="card-dialog-desc">Enter card details</h1>
+          <h1 id="card-dialog-title">Enter card details</h1>
           <input
             type="text"
             placeholder="Enter your name"
