@@ -30,3 +30,7 @@ export const menuArray = [
 ];
 
 export let orderMap = new Map();
+
+export function clearOrderMap() {
+  orderMap = new Map();
+}

@@ -1,0 +1,12 @@
+header {
+  background-image: url("../../assets/burger.png");
+  height: 167px;
+  color: white;
+  padding: 46px;
+  box-sizing: border-box;
+}
+
+#advertisement {
+  font-size: 22.42px;
+  line-height: 13.8px;
+}
