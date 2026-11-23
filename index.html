@@ -1,90 +1,91 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <html>
-    <head>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Smythe&display=swap"
-        rel="stylesheet"
-      />
-      <link rel="stylesheet" href="css/components/header.css" />
-      <link rel="stylesheet" href="css/base.css" />
-      <link rel="stylesheet" href="css/utility.css" />
-      <link rel="stylesheet" href="css/components/menu.css" />
-      <link rel="stylesheet" href="css/components/receipt.css" />
-      <link rel="stylesheet" href="css/components/button.css" />
-      <link rel="stylesheet" href="css/components/card-dialog.css" />
-      <link rel="stylesheet" href="css/components/order-confirmation.css" />
-      <link rel="stylesheet" href="css/components/live-region.css" />
-      <script src="index.js" type="module"></script>
-    </head>
-    <body>
-      <header>
-        <h1 class="font-weight-regular">Jimmy’s Diner</h1>
-        <p id="advertisement" class="font-weight-regular">
-          The best burgers and pizzas in town.
-        </p>
-      </header>
-      <main id="main-menu" tabindex="-1" aria-label="food menu">
-        <ul id="menu"></ul>
-        <article id="checkout-section" class="display-none">
-          <h2 id="receipt-title" class="font-weight-regular">Your order</h2>
-          <ul id="receipt-list"></ul>
-          <button id="complete-order-btn" class="font-verdana green-btn">
-            Complete order
-          </button>
-        </article>
-        <div class="visually-hidden" aria-live="polite"></div>
-        <p
-          class="order-confirmation visually-hidden"
-          role="alert"
-          aria-atomic="true"
-          tabindex="-1"
-        ></p>
-      </main>
-      <dialog id="card-dialog" aria-labelledby="card-dialog-title">
-        <form id="card-dialog-form" action="" class="font-verdana">
-          <h1 id="card-dialog-title">Enter card details</h1>
-          <input
-            type="text"
-            placeholder="Enter your name"
-            id="name"
-            name="name"
-            aria-label="Name"
-            class="font-verdana"
-            required
-          />
-          <input
-            type="text"
-            inputmode="numeric"
-            placeholder="Enter card number"
-            id="card-number"
-            name="card-number"
-            aria-label="Card number"
-            class="font-verdana"
-            required
-            pattern="^\d+$"
-            minlength="15"
-            maxlength="16"
-          />
-          <input
-            type="text"
-            inputmode="numeric"
-            placeholder="Enter CVV"
-            id="cvv"
-            name="cvv"
-            aria-label="Card cvv"
-            class="font-verdana"
-            required="^\d+$"
-            minlength="3"
-            maxlength="4"
-          />
-          <button id="pay-btn" class="green-btn font-size-20px font-verdana">
-            Pay
-          </button>
-        </form>
-      </dialog>
-    </body>
-  </html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jimmy’s Diner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Smythe&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/components/header.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/utility.css" />
+    <link rel="stylesheet" href="css/components/menu.css" />
+    <link rel="stylesheet" href="css/components/receipt.css" />
+    <link rel="stylesheet" href="css/components/button.css" />
+    <link rel="stylesheet" href="css/components/card-dialog.css" />
+    <link rel="stylesheet" href="css/components/order-confirmation.css" />
+    <link rel="stylesheet" href="css/components/live-region.css" />
+    <script src="index.js" type="module"></script>
+  </head>
+  <body>
+    <header>
+      <h1 class="font-weight-regular">Jimmy’s Diner</h1>
+      <p id="advertisement" class="font-weight-regular">
+        The best burgers and pizzas in town.
+      </p>
+    </header>
+    <main id="main-menu" tabindex="-1" aria-label="food menu">
+      <ul id="menu"></ul>
+      <article id="checkout-section" class="display-none">
+        <h2 id="receipt-title" class="font-weight-regular">Your order</h2>
+        <ul id="receipt-list"></ul>
+        <button id="complete-order-btn" class="font-verdana green-btn">
+          Complete order
+        </button>
+      </article>
+      <div class="visually-hidden" aria-live="polite"></div>
+      <p
+        class="order-confirmation visually-hidden"
+        role="alert"
+        aria-atomic="true"
+        tabindex="-1"
+      ></p>
+    </main>
+    <dialog id="card-dialog" aria-labelledby="card-dialog-title">
+      <form id="card-dialog-form" action="" class="font-verdana">
+        <h1 id="card-dialog-title">Enter card details</h1>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          id="name"
+          name="name"
+          aria-label="Name"
+          class="font-verdana"
+          required
+        />
+        <input
+          type="text"
+          inputmode="numeric"
+          placeholder="Enter card number"
+          id="card-number"
+          name="card-number"
+          aria-label="Card number"
+          class="font-verdana"
+          required
+          pattern="^\d+$"
+          minlength="15"
+          maxlength="16"
+        />
+        <input
+          type="text"
+          inputmode="numeric"
+          placeholder="Enter CVV"
+          id="cvv"
+          name="cvv"
+          aria-label="Card cvv"
+          class="font-verdana"
+          required="^\d+$"
+          minlength="3"
+          maxlength="4"
+        />
+        <button id="pay-btn" class="green-btn font-size-20px font-verdana">
+          Pay
+        </button>
+      </form>
+    </dialog>
+  </body>
 </html>

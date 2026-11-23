@@ -187,23 +187,32 @@ function renderMenu(menuArray) {
           ? item.ingredients.join(",")
           : item.ingredients.join(", ");
       return `
-            <li class="item-container position-relative display-flex" aria-label="${item.name}">
-                <div class="item-inner-container">
-                    <img
-                        class="item-image-size"
-                        src="${item.image}"
-                        alt="${item.imageAlt}"
-                    />
-                    <div class="item-inner-desc-container">
-                        <h2 class="font-weight-regular">${item.name}</h2>
-                        <p class="color-light">${ingredientsText}</p>
-                        <p class="font-size-20px">$${item.price}</p>
-                    </div>
-                </div>
-                <button class="add-btn font-inter" data-item="${item.id}" aria-label="Add ${item.name}, button">
-                    <span class="position-relative">+</span>
-                </button>
-            </li> `;
+        <li
+          class="item-container position-relative display-flex"
+          aria-label="${item.name}"
+        >
+          <div class="item-inner-container">
+            <img
+              class="item-image-size"
+              src="${item.image}"
+              alt="${item.imageAlt}"
+              width="79"
+              height="79"
+            />
+            <div class="item-inner-desc-container">
+              <h2 class="font-weight-regular">${item.name}</h2>
+              <p class="color-light">${ingredientsText}</p>
+              <p class="font-size-20px">$${item.price}</p>
+            </div>
+          </div>
+          <button
+            class="add-btn font-inter"
+            data-item="${item.id}"
+            aria-label="Add ${item.name}, button"
+          >
+            <span class="position-relative">+</span>
+          </button>
+        </li> `;
     })
     .join("");
 
