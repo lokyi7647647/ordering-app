@@ -1,19 +1,62 @@
-# Getting Started
-Install the dependencies and run the project
-```
+# Jimmy’s Diner Ordering App
+
+![Jimmy’s Diner ordering app interface, showing the menu and add buttons](assets/ordering-app-interface.jpg)
+
+Jimmy’s Diner is a small browser-based ordering app built with HTML, CSS, and vanilla JavaScript, with accessibility considered throughout the ordering flow. Customers can browse a menu, build an order, and review the total before completing a demo checkout.
+
+## Features
+
+- Menu items and prices are rendered from data in `data.js`.
+- Add menu items to an order and see quantities and prices update.
+- Remove items and review the updated order total.
+- Complete checkout through a card details dialog and see an order confirmation.
+- Keyboard and screen-reader support is built into key ordering interactions.
+
+## Project Structure
+
+- `assets/` contains the menu and header images.
+- `css/` contains the shared styles, utility classes, and component styles.
+- `data.js` defines the menu and stores the current order state.
+- `index.html` contains the page markup.
+- `index.js` renders the menu and handles order and checkout interactions.
+- `vite.config.js` contains the Vite configuration.
+
+## Build
+
+Install the project dependencies:
+
+```sh
 npm install
-npm start
 ```
 
-Head over to https://vitejs.dev/ to learn more about configuring vite
-## About Scrimba
+Create a production build:
 
-At Scrimba our goal is to create the best possible coding school at the cost of a gym membership! 💜
-If we succeed with this, it will give anyone who wants to become a software developer a realistic shot at succeeding, regardless of where they live and the size of their wallets 🎉
-The Fullstack Developer Path aims to teach you everything you need to become a Junior Developer, or you could go further with one of our advanced courses 🚀
+```sh
+npm run build
+```
 
-- [Our courses](https://scrimba.com/courses)
-- [The Frontend Career Path](https://scrimba.com/fullstack-path-c0fullstack)
-- [Become a Scrimba Pro member](https://scrimba.com/pricing)
+The generated site is written to `dist/`. Preview the production build locally with:
 
-Happy Coding!
+```sh
+npm run preview
+```
+
+## Run
+
+Start the Vite development server:
+
+```sh
+npm run dev
+```
+
+Open the local URL printed in the terminal. `npm start` is also configured to start the development server.
+
+## Design Highlights
+
+- **Data-driven menu:** menu cards are generated from the item records in `data.js`.
+- **Order state:** a `Map` tracks each selected item’s quantity and accumulated price.
+- **Accessible feedback:** live announcements describe order changes, and keyboard focus is managed when using the checkout dialog and removing items.
+
+## Notes
+
+Checkout is a front-end demonstration. It does not process payments or send orders to a restaurant. The project currently has no automated test script.
